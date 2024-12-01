@@ -1,3 +1,4 @@
+import 'package:filmflix/core/themes/app_themes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,13 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FilmFlix',
       debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFE50812),
-          brightness: Brightness.dark,
-        ),
-        useMaterial3: true,
-      ),
+      darkTheme: AppThemes.darkTheme,
       themeMode: ThemeMode.dark,
       home: const Scaffold(),
     );
