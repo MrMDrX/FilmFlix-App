@@ -1,3 +1,4 @@
+import 'package:filmflix/core/routes/app_router.dart';
 import 'package:filmflix/core/themes/app_themes.dart';
 import 'package:flutter/material.dart';
 
@@ -10,12 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'FilmFlix',
       debugShowCheckedModeBanner: false,
       darkTheme: AppThemes.darkTheme,
       themeMode: ThemeMode.dark,
-      home: const Scaffold(),
+      routerConfig: AppRouter.router,
     );
   }
 }
