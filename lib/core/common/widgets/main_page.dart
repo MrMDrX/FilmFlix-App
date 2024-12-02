@@ -1,9 +1,9 @@
-import 'package:filmflix/core/constants/app_strings.dart';
-import 'package:filmflix/core/constants/app_values.dart';
-import 'package:filmflix/core/routes/app_router.dart';
-import 'package:filmflix/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:filmflix/core/constants/app_strings.dart';
+import 'package:filmflix/core/constants/app_values.dart';
+import 'package:filmflix/core/config/routes/app_router.dart';
+import 'package:filmflix/core/config/routes/app_routes.dart';
 
 class MainPage extends StatefulWidget {
   final Widget child;

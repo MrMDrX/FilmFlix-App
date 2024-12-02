@@ -15,6 +15,14 @@ dependencies:
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
   go_router: ^14.6.2
+  equatable: ^2.0.7
+  dartz: ^0.10.1
+  dio: ^5.7.0
+  get_it: ^8.0.2
+  flutter_bloc: ^8.1.6
+  carousel_slider: ^5.0.0
+  cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

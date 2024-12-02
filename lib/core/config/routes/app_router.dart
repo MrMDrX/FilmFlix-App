@@ -1,5 +1,5 @@
-import 'package:filmflix/core/routes/app_routes.dart';
-import 'package:filmflix/core/widgets/main_page.dart';
+import 'package:filmflix/core/config/routes/app_routes.dart';
+import 'package:filmflix/core/common/widgets/main_page.dart';
 import 'package:filmflix/features/movies/presentation/pages/movies_page.dart';
 import 'package:go_router/go_router.dart';
 

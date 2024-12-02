@@ -1,4 +1,4 @@
-import 'package:filmflix/core/themes/app_colors.dart';
+import 'package:filmflix/core/config/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
