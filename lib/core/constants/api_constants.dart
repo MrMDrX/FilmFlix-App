@@ -11,4 +11,12 @@ class ApiConstants {
   static const String popularMoviesPath = '$baseUrl/movie/popular';
 
   static const String topRatedMoviesPath = '$baseUrl/movie/top_rated';
+
+  static String getAllPopularMoviesPath(int page) {
+    return '$baseUrl/movie/popular?page=$page';
+  }
+
+  static String getAllTopRatedMoviesPath(int page) {
+    return '$baseUrl/movie/top_rated?page=$page';
+  }
 }

@@ -9,6 +9,8 @@ abstract class MoviesRemoteSource {
   Future<List<MovieModel>> getNowPlayingMovies();
   Future<List<MovieModel>> getPopularMovies();
   Future<List<MovieModel>> getTopRatedMovies();
+  Future<List<MovieModel>> getAllPopularMovies(int page);
+  Future<List<MovieModel>> getAllTopRatedMovies(int page);
 }
 
 class MoviesRemoteSourceImpl extends MoviesRemoteSource {
@@ -54,6 +56,34 @@ class MoviesRemoteSourceImpl extends MoviesRemoteSource {
   @override
   Future<List<MovieModel>> getTopRatedMovies() async {
     final response = await Dio().get(ApiConstants.topRatedMoviesPath);
+    if (response.statusCode == 200) {
+      return List<MovieModel>.from((response.data['results'] as List)
+          .map((e) => MovieModel.fromJson(e)));
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<List<MovieModel>> getAllPopularMovies(int page) async {
+    final response =
+        await Dio().get(ApiConstants.getAllPopularMoviesPath(page));
+    if (response.statusCode == 200) {
+      return List<MovieModel>.from((response.data['results'] as List)
+          .map((e) => MovieModel.fromJson(e)));
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<List<MovieModel>> getAllTopRatedMovies(int page) async {
+    final response =
+        await Dio().get(ApiConstants.getAllTopRatedMoviesPath(page));
     if (response.statusCode == 200) {
       return List<MovieModel>.from((response.data['results'] as List)
           .map((e) => MovieModel.fromJson(e)));
