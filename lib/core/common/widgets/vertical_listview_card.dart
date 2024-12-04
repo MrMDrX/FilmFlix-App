@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:filmflix/core/common/entities/media.dart';
 import 'package:filmflix/core/common/widgets/image_with_shimmer.dart';
 import 'package:filmflix/core/config/themes/app_colors.dart';
 import 'package:filmflix/core/constants/app_values.dart';
-import 'package:flutter/material.dart';
+import 'package:filmflix/core/extensions/context_extension.dart';
+import 'package:filmflix/core/utils/helpers.dart';
 
 class VerticalListViewCard extends StatelessWidget {
   const VerticalListViewCard({
@@ -14,9 +16,11 @@ class VerticalListViewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = context.textTheme;
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        goToDetailsPage(context, media);
+      },
       child: Container(
         height: AppSize.s175,
         decoration: BoxDecoration(

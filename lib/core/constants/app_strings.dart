@@ -9,6 +9,13 @@ class AppStrings {
   static const String topRatedMovies = 'Top rated movies';
   static const String seeAll = 'see all';
 
+  static const String cast = 'Cast';
+  static const String reviews = 'Reviews';
+  static const String similar = 'Similar';
+  static const String story = 'Story';
+  static const String showLess = 'Show less';
+  static const String showMore = 'Show more';
+
   static const String oops = 'Ooops';
   static const String tryAgainLater = 'Please try again later';
   static const String errorMessage = 'Something went wrong';

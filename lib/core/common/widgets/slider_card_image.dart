@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:filmflix/core/extensions/context_extension.dart';
 import 'package:filmflix/core/common/widgets/image_with_shimmer.dart';
 import 'package:filmflix/core/config/themes/app_colors.dart';
 
@@ -12,7 +13,6 @@ class SliderCardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return ShaderMask(
       blendMode: BlendMode.dstIn,
       shaderCallback: (rect) {
@@ -30,7 +30,7 @@ class SliderCardImage extends StatelessWidget {
         );
       },
       child: ImageWithShimmer(
-        height: size.height * 0.6,
+        height: context.height * 0.6,
         width: double.infinity,
         imageUrl: imageUrl,
       ),

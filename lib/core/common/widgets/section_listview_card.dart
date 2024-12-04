@@ -1,3 +1,4 @@
+import 'package:filmflix/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:filmflix/core/extensions/context_extension.dart';
 import 'package:filmflix/core/common/entities/media.dart';
@@ -22,7 +23,9 @@ class SectionListViewCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              goToDetailsPage(context, media);
+            },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(AppSize.s8),
               child: ImageWithShimmer(

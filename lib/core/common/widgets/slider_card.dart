@@ -1,3 +1,4 @@
+import 'package:filmflix/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:filmflix/core/extensions/context_extension.dart';
 import 'package:filmflix/core/common/entities/media.dart';
@@ -6,21 +7,21 @@ import 'package:filmflix/core/config/themes/app_colors.dart';
 import 'package:filmflix/core/constants/app_values.dart';
 
 class SliderCard extends StatelessWidget {
+  final Media media;
+  final int itemIndex;
   const SliderCard({
     super.key,
     required this.media,
     required this.itemIndex,
   });
 
-  final Media media;
-  final int itemIndex;
-
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
-    final size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        goToDetailsPage(context, media);
+      },
       child: SafeArea(
         child: Stack(
           children: [
@@ -32,7 +33,7 @@ class SliderCard extends StatelessWidget {
                 bottom: AppPadding.p10,
               ),
               child: SizedBox(
-                height: size.height * 0.55,
+                height: context.height * 0.55,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
