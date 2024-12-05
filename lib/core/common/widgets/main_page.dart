@@ -71,6 +71,9 @@ class _MainPageState extends State<MainPage> {
     if (location.startsWith(moviesPath)) {
       return 0;
     }
+    if (location.startsWith(tvShowsPath)) {
+      return 1;
+    }
     return 0;
   }
 
@@ -78,6 +81,9 @@ class _MainPageState extends State<MainPage> {
     switch (index) {
       case 0:
         context.goNamed(AppRoutes.moviesRoute);
+        break;
+      case 1:
+        context.goNamed(AppRoutes.tvShowsRoute);
         break;
     }
   }

@@ -4,6 +4,7 @@ import 'package:filmflix/features/movies/presentation/pages/movie_details_page.d
 import 'package:filmflix/features/movies/presentation/pages/movies_page.dart';
 import 'package:filmflix/features/movies/presentation/pages/popular_movies_page.dart';
 import 'package:filmflix/features/movies/presentation/pages/top_rated_movies_page.dart';
+import 'package:filmflix/features/shows/presentation/pages/tv_shows_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,6 +13,8 @@ const String popularMoviesPath = 'popularMovies';
 const String topRatedMoviesPath = 'topRatedMovies';
 const String movieDetailsPath = 'movieDetails/:movieId';
 
+const String tvShowsPath = '/tvShows';
+
 class AppRouter {
   static GoRouter router = GoRouter(
     initialLocation: moviesPath,
@@ -19,6 +22,7 @@ class AppRouter {
       ShellRoute(
         builder: (context, state, child) => MainPage(child: child),
         routes: [
+          // Movies
           GoRoute(
             name: AppRoutes.moviesRoute,
             path: moviesPath,
@@ -51,6 +55,15 @@ class AppRouter {
               ),
             ],
           ),
+
+          // TV Shows
+          GoRoute(
+            name: AppRoutes.tvShowsRoute,
+            path: tvShowsPath,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: TVShowsPage(),
+            ),
+          )
         ],
       )
     ],

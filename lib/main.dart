@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:filmflix/core/services/service_locator.dart';
 import 'package:filmflix/core/config/routes/app_router.dart';
 import 'package:filmflix/core/config/themes/app_themes.dart';
-import 'package:filmflix/core/services/service_locator.dart';
-import 'package:flutter/material.dart';
+import 'package:filmflix/core/constants/app_strings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'FilmFlix',
+      title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
       darkTheme: AppThemes.darkTheme,
       themeMode: ThemeMode.dark,

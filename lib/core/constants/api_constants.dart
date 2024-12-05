@@ -33,4 +33,14 @@ class ApiConstants {
   static String getAllTopRatedMoviesPath(int page) {
     return '$baseUrl/movie/top_rated?page=$page';
   }
+
+  // tv shows paths
+  static const String onAirTvShowsPath =
+      '$baseUrl/tv/on_the_air?with_original_language=en';
+
+  static const String popularTvShowsPath =
+      '$baseUrl/tv/popular?with_original_language=en';
+
+  static const String topRatedTvShowsPath =
+      '$baseUrl/tv/top_rated?with_original_language=en';
 }

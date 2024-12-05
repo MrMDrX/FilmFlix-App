@@ -16,6 +16,9 @@ class AppStrings {
   static const String showLess = 'Show less';
   static const String showMore = 'Show more';
 
+  static const String popularShows = 'Popular shows';
+  static const String topRatedShows = 'Top rated shows';
+
   static const String oops = 'Ooops';
   static const String tryAgainLater = 'Please try again later';
   static const String errorMessage = 'Something went wrong';
