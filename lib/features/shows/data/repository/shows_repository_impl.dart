@@ -22,4 +22,28 @@ class TVShowsRepositoryImpl extends TVShowsRepository {
       return Left(ServerFailure(failure.message!));
     }
   }
+
+  @override
+  Future<Either<Failure, List<Media>>> getAllPopularTVShows(int page) async {
+    try {
+      final result = await _baseTVShowsRemoteSource.getAllPopularTVShows(page);
+      return Right(result);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMessageModel.statusMessage));
+    } on DioException catch (failure) {
+      return Left(ServerFailure(failure.message!));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Media>>> getAllTopRatedTVShows(int page) async {
+    try {
+      final result = await _baseTVShowsRemoteSource.getAllTopRatedTVShows(page);
+      return Right(result);
+    } on ServerException catch (failure) {
+      return Left(ServerFailure(failure.errorMessageModel.statusMessage));
+    } on DioException catch (failure) {
+      return Left(ServerFailure(failure.message!));
+    }
+  }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:filmflix/core/config/routes/app_routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:filmflix/core/common/entities/media.dart';
 import 'package:filmflix/core/common/widgets/custom_slider.dart';
@@ -75,7 +77,9 @@ class TVShowsWidget extends StatelessWidget {
           ),
           SectionHeader(
             title: AppStrings.popularShows,
-            onSeeAllTap: () {},
+            onSeeAllTap: () {
+              context.goNamed(AppRoutes.popularTvShowsRoute);
+            },
           ),
           SectionListView(
             height: AppSize.s240,
@@ -86,7 +90,9 @@ class TVShowsWidget extends StatelessWidget {
           ),
           SectionHeader(
             title: AppStrings.topRatedShows,
-            onSeeAllTap: () {},
+            onSeeAllTap: () {
+              context.goNamed(AppRoutes.topRatedTvShowsRoute);
+            },
           ),
           SectionListView(
             height: AppSize.s240,

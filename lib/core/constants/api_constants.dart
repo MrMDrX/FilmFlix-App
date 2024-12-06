@@ -43,4 +43,12 @@ class ApiConstants {
 
   static const String topRatedTvShowsPath =
       '$baseUrl/tv/top_rated?with_original_language=en';
+
+  static String getAllPopularTvShowsPath(int page) {
+    return '$baseUrl/tv/popular?page=$page&with_original_language=en';
+  }
+
+  static String getAllTopRatedTvShowsPath(int page) {
+    return '$baseUrl/tv/top_rated?page=$page&with_original_language=en';
+  }
 }

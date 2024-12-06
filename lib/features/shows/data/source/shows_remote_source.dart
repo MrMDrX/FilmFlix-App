@@ -9,6 +9,8 @@ abstract class TVShowsRemoteSource {
   Future<List<TVShowModel>> getOnAirTVShows();
   Future<List<TVShowModel>> getPopularTVShows();
   Future<List<TVShowModel>> getTopRatedTVShows();
+  Future<List<TVShowModel>> getAllPopularTVShows(int page);
+  Future<List<TVShowModel>> getAllTopRatedTVShows(int page);
 }
 
 class TVShowsRemoteSourceImpl extends TVShowsRemoteSource {
@@ -54,6 +56,34 @@ class TVShowsRemoteSourceImpl extends TVShowsRemoteSource {
   @override
   Future<List<TVShowModel>> getTopRatedTVShows() async {
     final response = await Dio().get(ApiConstants.topRatedTvShowsPath);
+    if (response.statusCode == 200) {
+      return List<TVShowModel>.from((response.data['results'] as List)
+          .map((e) => TVShowModel.fromJson(e)));
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<List<TVShowModel>> getAllPopularTVShows(int page) async {
+    final response =
+        await Dio().get(ApiConstants.getAllPopularTvShowsPath(page));
+    if (response.statusCode == 200) {
+      return List<TVShowModel>.from((response.data['results'] as List)
+          .map((e) => TVShowModel.fromJson(e)));
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<List<TVShowModel>> getAllTopRatedTVShows(int page) async {
+    final response =
+        await Dio().get(ApiConstants.getAllTopRatedTvShowsPath(page));
     if (response.statusCode == 200) {
       return List<TVShowModel>.from((response.data['results'] as List)
           .map((e) => TVShowModel.fromJson(e)));

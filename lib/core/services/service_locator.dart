@@ -12,8 +12,12 @@ import 'package:filmflix/features/movies/presentation/bloc/top_rated_movies_bloc
 import 'package:filmflix/features/shows/data/repository/shows_repository_impl.dart';
 import 'package:filmflix/features/shows/data/source/shows_remote_source.dart';
 import 'package:filmflix/features/shows/domain/repository/shows_repository.dart';
+import 'package:filmflix/features/shows/domain/usecases/get_all_popular_shows_usecase.dart';
+import 'package:filmflix/features/shows/domain/usecases/get_all_top_rated_shows_usecase.dart';
 import 'package:filmflix/features/shows/domain/usecases/get_shows_usecase.dart';
+import 'package:filmflix/features/shows/presentation/bloc/popular_shows_bloc/popular_shows_bloc.dart';
 import 'package:filmflix/features/shows/presentation/bloc/shows_bloc/shows_bloc.dart';
+import 'package:filmflix/features/shows/presentation/bloc/top_rated_shows_bloc/top_rated_shows_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -41,6 +45,8 @@ class ServiceLocator {
     sl.registerLazySingleton(() => GetMoviesDetailsUseCase(sl()));
 
     sl.registerLazySingleton(() => GetTVShowsUseCase(sl()));
+    sl.registerLazySingleton(() => GetAllPopularTVShowsUseCase(sl()));
+    sl.registerLazySingleton(() => GetAllTopRatedTVShowsUseCase(sl()));
 
     // Blocs
     sl.registerFactory(() => MoviesBloc(sl()));
@@ -49,5 +55,7 @@ class ServiceLocator {
     sl.registerFactory(() => MovieDetailsBloc(sl()));
 
     sl.registerFactory(() => TVShowsBloc(sl()));
+    sl.registerFactory(() => PopularTVShowsBloc(sl()));
+    sl.registerFactory(() => TopRatedTVShowsBloc(sl()));
   }
 }
