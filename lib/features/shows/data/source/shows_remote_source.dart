@@ -2,7 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:filmflix/core/constants/api_constants.dart';
 import 'package:filmflix/core/error/exceptions.dart';
 import 'package:filmflix/core/network/error_message_model.dart';
+import 'package:filmflix/features/shows/data/models/season_details_model.dart';
+import 'package:filmflix/features/shows/data/models/tv_show_details_model.dart';
 import 'package:filmflix/features/shows/data/models/tv_show_model.dart';
+import 'package:filmflix/features/shows/domain/usecases/get_season_details_usecase.dart';
 
 abstract class TVShowsRemoteSource {
   Future<List<List<TVShowModel>>> getTVShows();
@@ -11,6 +14,8 @@ abstract class TVShowsRemoteSource {
   Future<List<TVShowModel>> getTopRatedTVShows();
   Future<List<TVShowModel>> getAllPopularTVShows(int page);
   Future<List<TVShowModel>> getAllTopRatedTVShows(int page);
+  Future<TVShowDetailsModel> getTVShowDetails(int id);
+  Future<SeasonDetailsModel> getSeasonDetails(SeasonDetailsParams params);
 }
 
 class TVShowsRemoteSourceImpl extends TVShowsRemoteSource {
@@ -87,6 +92,31 @@ class TVShowsRemoteSourceImpl extends TVShowsRemoteSource {
     if (response.statusCode == 200) {
       return List<TVShowModel>.from((response.data['results'] as List)
           .map((e) => TVShowModel.fromJson(e)));
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<TVShowDetailsModel> getTVShowDetails(int id) async {
+    final response = await Dio().get(ApiConstants.getTvShowDetailsPath(id));
+    if (response.statusCode == 200) {
+      return TVShowDetailsModel.fromJson(response.data);
+    } else {
+      throw ServerException(
+        errorMessageModel: ErrorMessageModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<SeasonDetailsModel> getSeasonDetails(
+      SeasonDetailsParams params) async {
+    final response = await Dio().get(ApiConstants.getSeasonDetailsPath(params));
+    if (response.statusCode == 200) {
+      return SeasonDetailsModel.fromJson(response.data);
     } else {
       throw ServerException(
         errorMessageModel: ErrorMessageModel.fromJson(response.data),

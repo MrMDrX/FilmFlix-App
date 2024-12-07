@@ -1,3 +1,4 @@
+import 'package:filmflix/features/shows/presentation/pages/show_details_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:filmflix/core/config/routes/app_routes.dart';
@@ -18,6 +19,7 @@ const String movieDetailsPath = 'movieDetails/:movieId';
 const String tvShowsPath = '/tvShows';
 const String popularTVShowsPath = 'popularTVShows';
 const String topRatedTVShowsPath = 'topRatedTVShows';
+const String tvShowDetailsPath = 'tvShowDetails/:tvShowId';
 
 class AppRouter {
   static GoRouter router = GoRouter(
@@ -80,6 +82,15 @@ class AppRouter {
                 path: topRatedTVShowsPath,
                 pageBuilder: (context, state) => const CupertinoPage(
                   child: TopRatedTVShowsPage(),
+                ),
+              ),
+              GoRoute(
+                name: AppRoutes.tvShowDetailsRoute,
+                path: tvShowDetailsPath,
+                pageBuilder: (context, state) => CupertinoPage(
+                  child: TVShowDetailsPage(
+                    tvShowId: int.parse(state.pathParameters['tvShowId']!),
+                  ),
                 ),
               ),
             ],

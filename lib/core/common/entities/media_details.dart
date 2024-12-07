@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:filmflix/core/common/entities/media.dart';
 import 'package:filmflix/features/movies/domain/entities/cast.dart';
 import 'package:filmflix/features/movies/domain/entities/review.dart';
+import 'package:filmflix/features/shows/domain/entities/episode.dart';
+import 'package:filmflix/features/shows/domain/entities/season.dart';
 
 // ignore: must_be_immutable
 class MediaDetails extends Equatable {
@@ -21,6 +23,8 @@ class MediaDetails extends Equatable {
   final List<Cast>? cast;
   final List<Review>? reviews;
   final List<Media> similar;
+  final Episode? lastEpisodeToAir;
+  final List<Season>? seasons;
   bool isAdded;
 
   MediaDetails({
@@ -40,6 +44,8 @@ class MediaDetails extends Equatable {
     this.cast,
     this.reviews,
     required this.similar,
+    this.lastEpisodeToAir,
+    this.seasons,
     this.isAdded = false,
   });
 

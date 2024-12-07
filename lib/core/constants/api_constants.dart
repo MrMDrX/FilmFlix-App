@@ -1,3 +1,5 @@
+import 'package:filmflix/features/shows/domain/usecases/get_season_details_usecase.dart';
+
 class ApiConstants {
   static const String baseUrl = 'https://api.movies.tastejs.com';
   static const String baseBackdropUrl = 'https://image.tmdb.org/t/p/w1280';
@@ -50,5 +52,13 @@ class ApiConstants {
 
   static String getAllTopRatedTvShowsPath(int page) {
     return '$baseUrl/tv/top_rated?page=$page&with_original_language=en';
+  }
+
+  static String getTvShowDetailsPath(int tvShowId) {
+    return '$baseUrl/tv/$tvShowId?append_to_response=similar,videos';
+  }
+
+  static String getSeasonDetailsPath(SeasonDetailsParams params) {
+    return '$baseUrl/tv/${params.id}/season/${params.seasonNumber}';
   }
 }

@@ -174,11 +174,24 @@ String getTrailerUrl(Map<String, dynamic> json) {
   }
 }
 
+String getStillUrl(String? path) {
+  if (path != null) {
+    return ApiConstants.baseStillUrl + path;
+  } else {
+    return ApiConstants.stillPlaceHolder;
+  }
+}
+
 void goToDetailsPage(BuildContext context, Media media) {
   if (media.isMovie) {
     context.pushNamed(
       AppRoutes.movieDetailsRoute,
       pathParameters: {'movieId': media.tmdbId.toString()},
+    );
+  } else {
+    context.pushNamed(
+      AppRoutes.tvShowDetailsRoute,
+      pathParameters: {'tvShowId': media.tmdbId.toString()},
     );
   }
 }

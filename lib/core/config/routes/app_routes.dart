@@ -7,4 +7,5 @@ class AppRoutes {
   static const String tvShowsRoute = 'tvShows';
   static const String popularTvShowsRoute = 'popularTvShowsRoute';
   static const String topRatedTvShowsRoute = 'topRatedTvShowsRoute';
+  static const String tvShowDetailsRoute = 'tvShowDetails';
 }
