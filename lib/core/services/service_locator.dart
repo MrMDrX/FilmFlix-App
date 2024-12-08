@@ -9,6 +9,11 @@ import 'package:filmflix/features/movies/presentation/bloc/movie_details_bloc/mo
 import 'package:filmflix/features/movies/presentation/bloc/movies_bloc/movies_bloc.dart';
 import 'package:filmflix/features/movies/presentation/bloc/popular_movies_bloc/popular_movies_bloc.dart';
 import 'package:filmflix/features/movies/presentation/bloc/top_rated_movies_bloc/top_rated_movies_bloc.dart';
+import 'package:filmflix/features/search/data/repository/search_repository_impl.dart';
+import 'package:filmflix/features/search/data/source/search_remote_source.dart';
+import 'package:filmflix/features/search/domain/repository/search_repository.dart';
+import 'package:filmflix/features/search/domain/usecases/search_usecase.dart';
+import 'package:filmflix/features/search/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:filmflix/features/shows/data/repository/shows_repository_impl.dart';
 import 'package:filmflix/features/shows/data/source/shows_remote_source.dart';
 import 'package:filmflix/features/shows/domain/repository/shows_repository.dart';
@@ -34,12 +39,18 @@ class ServiceLocator {
     sl.registerLazySingleton<TVShowsRemoteSource>(
         () => TVShowsRemoteSourceImpl());
 
+    sl.registerLazySingleton<SearchRemoteSource>(
+        () => SearchRemoteSourceImpl());
+
     // Repositories
     sl.registerLazySingleton<MoviesRespository>(
         () => MoviesRepositoryImpl(sl()));
 
     sl.registerLazySingleton<TVShowsRepository>(
         () => TVShowsRepositoryImpl(sl()));
+
+    sl.registerLazySingleton<SearchRepository>(
+        () => SearchRepositoryImpl(sl()));
 
     // Use Cases
     sl.registerLazySingleton(() => GetMoviesUseCase(sl()));
@@ -53,6 +64,8 @@ class ServiceLocator {
     sl.registerLazySingleton(() => GetTVShowDetailsUseCase(sl()));
     sl.registerLazySingleton(() => GetSeasonDetailsUseCase(sl()));
 
+    sl.registerLazySingleton(() => SearchUseCase(sl()));
+
     // Blocs
     sl.registerFactory(() => MoviesBloc(sl()));
     sl.registerFactory(() => PopularMoviesBloc(sl()));
@@ -63,5 +76,7 @@ class ServiceLocator {
     sl.registerFactory(() => PopularTVShowsBloc(sl()));
     sl.registerFactory(() => TopRatedTVShowsBloc(sl()));
     sl.registerFactory(() => TVShowDetailsBloc(sl(), sl()));
+
+    sl.registerFactory(() => SearchBloc(sl()));
   }
 }

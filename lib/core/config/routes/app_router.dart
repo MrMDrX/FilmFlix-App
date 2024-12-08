@@ -1,3 +1,4 @@
+import 'package:filmflix/features/search/presentation/pages/search_page.dart';
 import 'package:filmflix/features/shows/presentation/pages/show_details_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,8 @@ const String tvShowsPath = '/tvShows';
 const String popularTVShowsPath = 'popularTVShows';
 const String topRatedTVShowsPath = 'topRatedTVShows';
 const String tvShowDetailsPath = 'tvShowDetails/:tvShowId';
+
+const String searchPath = '/search';
 
 class AppRouter {
   static GoRouter router = GoRouter(
@@ -94,7 +97,15 @@ class AppRouter {
                 ),
               ),
             ],
-          )
+          ),
+          // Search
+          GoRoute(
+            name: AppRoutes.searchRoute,
+            path: searchPath,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: SearchPage(),
+            ),
+          ),
         ],
       )
     ],

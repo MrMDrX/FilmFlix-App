@@ -61,4 +61,9 @@ class ApiConstants {
   static String getSeasonDetailsPath(SeasonDetailsParams params) {
     return '$baseUrl/tv/${params.id}/season/${params.seasonNumber}';
   }
+
+  // search paths
+  static String getSearchPath(String title) {
+    return '$baseUrl/search/multi?query=$title';
+  }
 }
