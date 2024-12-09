@@ -27,11 +27,17 @@ class AppStrings {
 
   static const String searchText =
       'By typing in search bar, you will get the most relevant results.';
-  static const String searchHint = 'Search for Movies, Series ...';
+  static const String searchHint = 'Search for Movies, Series..';
 
-  static const String oops = 'Ooops';
+  static const String watchlistIsEmpty = 'Watchlist is empty';
+  static const String watchlistText =
+      'Movies and series you added to watchlist will appear here.';
+  static const String addedToWatchlist = 'Added to watchlist';
+  static const String removedFromWatchlist = 'Removed from watchlist';
+
+  static const String oops = 'Oops';
   static const String tryAgainLater = 'Please try again later';
-  static const String errorMessage = 'Something went wrong';
-  static const String tryAgain = 'try again';
+  static const String errorMessage = 'Something went wrong!';
+  static const String tryAgain = 'Try again!';
   static const String noResults = 'No results';
 }

@@ -10,4 +10,5 @@ class AppRoutes {
   static const String tvShowDetailsRoute = 'tvShowDetails';
 
   static const String searchRoute = 'search';
+  static const String watchlistRoute = 'watchlist';
 }

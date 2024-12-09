@@ -30,6 +30,15 @@ class AppThemes {
       ),
     ),
 
+    // snackbar theme
+    snackBarTheme: const SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: AppColors.secondaryBackground,
+      contentTextStyle: TextStyle(
+        color: AppColors.secondaryText,
+      ),
+    ),
+
     // text theme
     textTheme: TextTheme(
       titleMedium: _getTextStyle(

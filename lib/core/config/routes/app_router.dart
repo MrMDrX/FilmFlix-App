@@ -1,16 +1,17 @@
-import 'package:filmflix/features/search/presentation/pages/search_page.dart';
-import 'package:filmflix/features/shows/presentation/pages/show_details_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:filmflix/core/config/routes/app_routes.dart';
 import 'package:filmflix/core/common/widgets/main_page.dart';
-import 'package:filmflix/features/movies/presentation/pages/movie_details_page.dart';
-import 'package:filmflix/features/movies/presentation/pages/movies_page.dart';
-import 'package:filmflix/features/movies/presentation/pages/popular_movies_page.dart';
-import 'package:filmflix/features/movies/presentation/pages/top_rated_movies_page.dart';
-import 'package:filmflix/features/shows/presentation/pages/popular_shows_page.dart';
-import 'package:filmflix/features/shows/presentation/pages/top_rated_shows_page.dart';
 import 'package:filmflix/features/shows/presentation/pages/shows_page.dart';
+import 'package:filmflix/features/movies/presentation/pages/movies_page.dart';
+import 'package:filmflix/features/search/presentation/pages/search_page.dart';
+import 'package:filmflix/features/shows/presentation/pages/show_details_page.dart';
+import 'package:filmflix/features/watchlist/presentation/pages/watchlist_page.dart';
+import 'package:filmflix/features/shows/presentation/pages/popular_shows_page.dart';
+import 'package:filmflix/features/movies/presentation/pages/movie_details_page.dart';
+import 'package:filmflix/features/movies/presentation/pages/popular_movies_page.dart';
+import 'package:filmflix/features/shows/presentation/pages/top_rated_shows_page.dart';
+import 'package:filmflix/features/movies/presentation/pages/top_rated_movies_page.dart';
 
 const String moviesPath = '/movies';
 const String popularMoviesPath = 'popularMovies';
@@ -23,6 +24,8 @@ const String topRatedTVShowsPath = 'topRatedTVShows';
 const String tvShowDetailsPath = 'tvShowDetails/:tvShowId';
 
 const String searchPath = '/search';
+
+const String watchlistPath = '/watchlist';
 
 class AppRouter {
   static GoRouter router = GoRouter(
@@ -98,12 +101,22 @@ class AppRouter {
               ),
             ],
           ),
+
           // Search
           GoRoute(
             name: AppRoutes.searchRoute,
             path: searchPath,
             pageBuilder: (context, state) => const NoTransitionPage(
               child: SearchPage(),
+            ),
+          ),
+
+          // Watchlist
+          GoRoute(
+            name: AppRoutes.watchlistRoute,
+            path: watchlistPath,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: WatchlistPage(),
             ),
           ),
         ],

@@ -4,6 +4,7 @@ import 'package:filmflix/core/common/widgets/image_with_shimmer.dart';
 import 'package:filmflix/core/config/routes/app_routes.dart';
 import 'package:filmflix/core/constants/app_values.dart';
 import 'package:filmflix/features/search/domain/entities/search_result_item.dart';
+import 'package:filmflix/core/extensions/context_extension.dart';
 
 class GridViewCard extends StatelessWidget {
   const GridViewCard({
@@ -15,7 +16,7 @@ class GridViewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = context.textTheme;
     return Column(
       children: [
         GestureDetector(

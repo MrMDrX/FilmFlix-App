@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:filmflix/core/constants/app_strings.dart';
 import 'package:filmflix/core/constants/app_values.dart';
+import 'package:filmflix/core/extensions/context_extension.dart';
 
 class SearchText extends StatelessWidget {
   const SearchText({
@@ -9,7 +10,7 @@ class SearchText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = context.textTheme;
     return Expanded(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

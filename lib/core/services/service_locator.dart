@@ -26,6 +26,14 @@ import 'package:filmflix/features/shows/presentation/bloc/popular_shows_bloc/pop
 import 'package:filmflix/features/shows/presentation/bloc/show_details_bloc/show_details_bloc.dart';
 import 'package:filmflix/features/shows/presentation/bloc/shows_bloc/shows_bloc.dart';
 import 'package:filmflix/features/shows/presentation/bloc/top_rated_shows_bloc/top_rated_shows_bloc.dart';
+import 'package:filmflix/features/watchlist/data/repository/watchlist_repository_impl.dart';
+import 'package:filmflix/features/watchlist/data/source/watchlist_local_source.dart';
+import 'package:filmflix/features/watchlist/domain/repository/watchlist_repository.dart';
+import 'package:filmflix/features/watchlist/domain/usecases/add_watchlist_item_usecase.dart';
+import 'package:filmflix/features/watchlist/domain/usecases/check_if_item_added_usecase.dart';
+import 'package:filmflix/features/watchlist/domain/usecases/get_watchlist_items_usecase.dart';
+import 'package:filmflix/features/watchlist/domain/usecases/remove_watchlist_item_usecase.dart';
+import 'package:filmflix/features/watchlist/presentation/bloc/watchlist_bloc/watchlist_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -42,6 +50,9 @@ class ServiceLocator {
     sl.registerLazySingleton<SearchRemoteSource>(
         () => SearchRemoteSourceImpl());
 
+    sl.registerLazySingleton<WatchlistLocalSource>(
+        () => WatchlistLocalSourceImpl());
+
     // Repositories
     sl.registerLazySingleton<MoviesRespository>(
         () => MoviesRepositoryImpl(sl()));
@@ -51,6 +62,9 @@ class ServiceLocator {
 
     sl.registerLazySingleton<SearchRepository>(
         () => SearchRepositoryImpl(sl()));
+
+    sl.registerLazySingleton<WatchlistRepository>(
+        () => WatchListRepositoryImpl(sl()));
 
     // Use Cases
     sl.registerLazySingleton(() => GetMoviesUseCase(sl()));
@@ -66,6 +80,11 @@ class ServiceLocator {
 
     sl.registerLazySingleton(() => SearchUseCase(sl()));
 
+    sl.registerLazySingleton(() => GetWatchlistItemsUseCase(sl()));
+    sl.registerLazySingleton(() => AddWatchlistItemUseCase(sl()));
+    sl.registerLazySingleton(() => RemoveWatchlistItemUseCase(sl()));
+    sl.registerLazySingleton(() => CheckIfItemAddedUseCase(sl()));
+
     // Blocs
     sl.registerFactory(() => MoviesBloc(sl()));
     sl.registerFactory(() => PopularMoviesBloc(sl()));
@@ -78,5 +97,7 @@ class ServiceLocator {
     sl.registerFactory(() => TVShowDetailsBloc(sl(), sl()));
 
     sl.registerFactory(() => SearchBloc(sl()));
+
+    sl.registerFactory(() => WatchlistBloc(sl(), sl(), sl(), sl()));
   }
 }

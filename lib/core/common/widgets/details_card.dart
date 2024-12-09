@@ -1,4 +1,9 @@
+import 'package:filmflix/core/common/entities/media.dart';
+import 'package:filmflix/core/constants/app_strings.dart';
+import 'package:filmflix/core/utils/helpers.dart';
+import 'package:filmflix/features/watchlist/presentation/bloc/watchlist_bloc/watchlist_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:filmflix/core/common/entities/media_details.dart';
 import 'package:filmflix/core/common/widgets/slider_card_image.dart';
@@ -19,6 +24,10 @@ class DetailsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = context.textTheme;
+
+    context
+        .read<WatchlistBloc>()
+        .add(CheckItemAddedEvent(tmdbId: mediaDetails.tmdbId));
 
     return SafeArea(
       child: Stack(
@@ -124,19 +133,50 @@ class DetailsCard extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    mediaDetails.isAdded
+                        ? context
+                            .read<WatchlistBloc>()
+                            .add(RemoveWatchListItemEvent(mediaDetails.id!))
+                        : context.read<WatchlistBloc>().add(
+                              AddWatchListItemEvent(
+                                  media: Media.fromMediaDetails(mediaDetails)),
+                            );
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(AppPadding.p8),
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: AppColors.iconContainer,
                     ),
-                    child: Icon(
-                      Icons.bookmark_rounded,
-                      color: mediaDetails.isAdded
-                          ? AppColors.primary
-                          : AppColors.secondaryText,
-                      size: AppSize.s20,
+                    child: BlocConsumer<WatchlistBloc, WatchlistState>(
+                      listener: (context, state) {
+                        if (state.status == WatchlistRequestStatus.itemAdded) {
+                          mediaDetails.id = state.id;
+                          mediaDetails.isAdded = true;
+                          showSnackBar(context, AppStrings.addedToWatchlist);
+                        } else if (state.status ==
+                            WatchlistRequestStatus.itemRemoved) {
+                          mediaDetails.id = null;
+                          mediaDetails.isAdded = false;
+                          showSnackBar(
+                              context, AppStrings.removedFromWatchlist);
+                        } else if (state.status ==
+                                WatchlistRequestStatus.isItemAdded &&
+                            state.id != -1) {
+                          mediaDetails.id = state.id;
+                          mediaDetails.isAdded = true;
+                        }
+                      },
+                      builder: (context, state) {
+                        return Icon(
+                          Icons.bookmark_rounded,
+                          color: mediaDetails.isAdded
+                              ? AppColors.primary
+                              : AppColors.secondaryText,
+                          size: AppSize.s20,
+                        );
+                      },
                     ),
                   ),
                 ),

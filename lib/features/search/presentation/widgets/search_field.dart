@@ -4,6 +4,7 @@ import 'package:filmflix/core/config/themes/app_colors.dart';
 import 'package:filmflix/core/constants/app_strings.dart';
 import 'package:filmflix/core/constants/app_values.dart';
 import 'package:filmflix/features/search/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:filmflix/core/extensions/context_extension.dart';
 
 class SearchField extends StatefulWidget {
   const SearchField({
@@ -25,7 +26,7 @@ class _SearchFieldState extends State<SearchField> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = context.textTheme;
     return Form(
       child: TextFormField(
         controller: _textController,

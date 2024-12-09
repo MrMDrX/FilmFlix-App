@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:filmflix/core/constants/app_strings.dart';
+import 'package:filmflix/core/extensions/context_extension.dart';
 
 class NoResults extends StatelessWidget {
   const NoResults({
@@ -8,13 +9,11 @@ class NoResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
     return Expanded(
       child: Center(
         child: Text(
           AppStrings.noResults,
-          style: textTheme.bodyLarge,
+          style: context.textTheme.bodyLarge,
         ),
       ),
     );

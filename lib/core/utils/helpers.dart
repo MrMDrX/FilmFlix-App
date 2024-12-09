@@ -265,3 +265,10 @@ Widget getRatingBarIndicator(double rating) {
     return const SizedBox();
   }
 }
+
+void showSnackBar(BuildContext context, String content) {
+  final snackBar = SnackBar(content: Text(content));
+  ScaffoldMessenger.of(context)
+    ..hideCurrentSnackBar()
+    ..showSnackBar(snackBar);
+}

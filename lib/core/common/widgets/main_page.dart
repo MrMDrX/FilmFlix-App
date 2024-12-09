@@ -77,6 +77,9 @@ class _MainPageState extends State<MainPage> {
     if (location.startsWith(searchPath)) {
       return 2;
     }
+    if (location.startsWith(watchlistPath)) {
+      return 3;
+    }
     return 0;
   }
 
@@ -90,6 +93,9 @@ class _MainPageState extends State<MainPage> {
         break;
       case 2:
         context.goNamed(AppRoutes.searchRoute);
+        break;
+      case 3:
+        context.goNamed(AppRoutes.watchlistRoute);
         break;
     }
   }
