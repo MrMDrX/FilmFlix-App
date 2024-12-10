@@ -67,13 +67,27 @@ class TVShowsWidget extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
-          CustomSlider(
-            itemBuilder: (context, itemIndex, _) {
-              return SliderCard(
-                media: onAirTvShows[itemIndex],
-                itemIndex: itemIndex,
-              );
-            },
+          Stack(
+            children: [
+              CustomSlider(
+                itemBuilder: (context, itemIndex, _) {
+                  return SliderCard(
+                    media: onAirTvShows[itemIndex],
+                    itemIndex: itemIndex,
+                  );
+                },
+              ),
+              // app logo
+              Positioned(
+                top: AppSize.s60,
+                left: AppSize.s16,
+                child: Image.asset(
+                  AppAssets.appLogo,
+                  fit: BoxFit.contain,
+                  width: AppSize.s100,
+                ),
+              ),
+            ],
           ),
           SectionHeader(
             title: AppStrings.popularShows,

@@ -2,6 +2,10 @@ class AppConstants {
   static const int carouselSliderItemsCount = 4;
 }
 
+class AppAssets {
+  static const String appLogo = 'assets/images/logo.png';
+}
+
 class AppMargin {
   static const double m8 = 8.0;
   static const double m10 = 10.0;

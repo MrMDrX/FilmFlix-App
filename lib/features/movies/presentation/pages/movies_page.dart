@@ -70,13 +70,27 @@ class MoviesWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomSlider(
-            itemBuilder: (context, itemIndex, _) {
-              return SliderCard(
-                media: nowPlayingMovies[itemIndex],
-                itemIndex: itemIndex,
-              );
-            },
+          Stack(
+            children: [
+              CustomSlider(
+                itemBuilder: (context, itemIndex, _) {
+                  return SliderCard(
+                    media: nowPlayingMovies[itemIndex],
+                    itemIndex: itemIndex,
+                  );
+                },
+              ),
+              // app logo
+              Positioned(
+                top: AppSize.s60,
+                left: AppSize.s16,
+                child: Image.asset(
+                  AppAssets.appLogo,
+                  fit: BoxFit.contain,
+                  width: AppSize.s100,
+                ),
+              ),
+            ],
           ),
           SectionHeader(
             title: AppStrings.popularMovies,

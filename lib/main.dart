@@ -14,10 +14,12 @@ void main() async {
   Hive.registerAdapter(MediaAdapter());
   await Hive.openBox('items');
   ServiceLocator.init();
-  runApp(BlocProvider(
-    create: (context) => sl<WatchlistBloc>(),
-    child: const MyApp(),
-  ));
+  runApp(
+    BlocProvider(
+      create: (context) => sl<WatchlistBloc>(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
