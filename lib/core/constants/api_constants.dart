@@ -17,6 +17,8 @@ class ApiConstants {
   static const String stillPlaceHolder =
       'https://popcornsg.s3.amazonaws.com/gallery/1577405144-six-year.png';
 
+  static const String playerUrl = 'https://vidsrc.to/embed';
+
   // movies paths
   static const String nowPlayingMoviesPath = '$baseUrl/movie/now_playing';
 

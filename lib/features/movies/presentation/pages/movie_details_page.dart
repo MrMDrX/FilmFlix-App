@@ -17,6 +17,7 @@ import 'package:filmflix/features/movies/presentation/bloc/movie_details_bloc/mo
 import 'package:filmflix/features/movies/presentation/widgets/cast_card.dart';
 import 'package:filmflix/features/movies/presentation/widgets/movie_card_details.dart';
 import 'package:filmflix/features/movies/presentation/widgets/review_card.dart';
+import 'package:filmflix/core/config/themes/app_colors.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   final int movieId;
@@ -47,6 +48,28 @@ class MovieDetailsPage extends StatelessWidget {
                         .add(GetMovieDetailsEvent(movieId));
                   },
                 );
+            }
+          },
+        ),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniCenterFloat,
+        floatingActionButton: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
+          builder: (context, state) {
+            if (state.status == RequestStatus.loaded) {
+              return FloatingActionButton(
+                onPressed: () {
+                  goToPlayerPage(
+                    context: context,
+                    tmdbId: state.movieDetails!.tmdbId.toString(),
+                  );
+                },
+                backgroundColor: AppColors.primary,
+                tooltip: AppStrings.watch,
+                child: const Icon(Icons.play_arrow_rounded),
+              );
+            } else {
+              // Return an empty container if the state is not loaded
+              return const SizedBox.shrink();
             }
           },
         ),

@@ -196,6 +196,32 @@ void goToDetailsPage(BuildContext context, Media media) {
   }
 }
 
+void goToPlayerPage({
+  required BuildContext context,
+  required String tmdbId,
+  String season = '',
+  String episode = '',
+}) {
+  if (season.isEmpty && episode.isEmpty) {
+    // Movie
+    context.pushNamed(
+      AppRoutes.playerMovieRoute,
+      pathParameters: {'movieId': tmdbId, 'tmdbId': tmdbId},
+    );
+  } else {
+    // TV show
+    context.pushNamed(
+      AppRoutes.playerShowRoute,
+      pathParameters: {
+        'tvShowId': tmdbId,
+        'tmdbId': tmdbId,
+        'season': season,
+        'episode': episode,
+      },
+    );
+  }
+}
+
 Widget getSimilarSection(List<Media>? similar) {
   if (similar != null && similar.isNotEmpty) {
     return Column(

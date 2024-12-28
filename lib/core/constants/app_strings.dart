@@ -25,6 +25,9 @@ class AppStrings {
   static const String episode = 'Episode';
   static const String airDate = 'Air date:';
 
+  static const String trailer = 'Trailer';
+  static const String watch = 'Watch';
+
   static const String searchText =
       'By typing in search bar, you will get the most relevant results.';
   static const String searchHint = 'Search for Movies, Series..';

@@ -11,4 +11,7 @@ class AppRoutes {
 
   static const String searchRoute = 'search';
   static const String watchlistRoute = 'watchlist';
+
+  static const String playerMovieRoute = 'playerMovie';
+  static const String playerShowRoute = 'playerShow';
 }

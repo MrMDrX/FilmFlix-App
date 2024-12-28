@@ -1,7 +1,8 @@
+import 'package:filmflix/core/common/pages/webview_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:filmflix/core/config/routes/app_routes.dart';
-import 'package:filmflix/core/common/widgets/main_page.dart';
+import 'package:filmflix/core/common/pages/main_page.dart';
 import 'package:filmflix/features/shows/presentation/pages/shows_page.dart';
 import 'package:filmflix/features/movies/presentation/pages/movies_page.dart';
 import 'package:filmflix/features/search/presentation/pages/search_page.dart';
@@ -27,12 +28,22 @@ const String searchPath = '/search';
 
 const String watchlistPath = '/watchlist';
 
+const String playerMoviePath = 'playerMovie/:tmdbId';
+const String playerShowPath =
+    'playerShow/:tmdbId/season/:season/episode/:episode';
+
 class AppRouter {
   static GoRouter router = GoRouter(
     initialLocation: moviesPath,
     routes: [
       ShellRoute(
-        builder: (context, state, child) => MainPage(child: child),
+        builder: (context, state, child) {
+          final isWebViewPage = state.uri.toString().contains('/player');
+          return MainPage(
+            showBottomNav: !isWebViewPage,
+            child: child,
+          );
+        },
         routes: [
           // Movies
           GoRoute(
@@ -64,6 +75,17 @@ class AppRouter {
                     movieId: int.parse(state.pathParameters['movieId']!),
                   ),
                 ),
+                routes: [
+                  GoRoute(
+                    name: AppRoutes.playerMovieRoute,
+                    path: playerMoviePath,
+                    pageBuilder: (context, state) => CupertinoPage(
+                      child: WebviewPlayer(
+                        tmdbId: state.pathParameters['tmdbId']!,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -91,14 +113,27 @@ class AppRouter {
                 ),
               ),
               GoRoute(
-                name: AppRoutes.tvShowDetailsRoute,
-                path: tvShowDetailsPath,
-                pageBuilder: (context, state) => CupertinoPage(
-                  child: TVShowDetailsPage(
-                    tvShowId: int.parse(state.pathParameters['tvShowId']!),
-                  ),
-                ),
-              ),
+                  name: AppRoutes.tvShowDetailsRoute,
+                  path: tvShowDetailsPath,
+                  pageBuilder: (context, state) => CupertinoPage(
+                        child: TVShowDetailsPage(
+                          tvShowId:
+                              int.parse(state.pathParameters['tvShowId']!),
+                        ),
+                      ),
+                  routes: [
+                    GoRoute(
+                      name: AppRoutes.playerShowRoute,
+                      path: playerShowPath,
+                      pageBuilder: (context, state) => CupertinoPage(
+                        child: WebviewPlayer(
+                          tmdbId: state.pathParameters['tmdbId']!,
+                          season: state.pathParameters['season'],
+                          episode: state.pathParameters['episode'],
+                        ),
+                      ),
+                    ),
+                  ]),
             ],
           ),
 

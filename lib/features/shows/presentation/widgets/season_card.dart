@@ -108,7 +108,10 @@ void _showBottomSheet(context, id, seasonNumber) {
             case RequestStatus.loading:
               return const LoadingIndicator();
             case RequestStatus.loaded:
-              return EpisodesWidget(episodes: state.seasonDetails!.episodes);
+              return EpisodesWidget(
+                episodes: state.seasonDetails!.episodes,
+                tmdbId: id.toString(),
+              );
             case RequestStatus.error:
               return const ErrorText();
           }

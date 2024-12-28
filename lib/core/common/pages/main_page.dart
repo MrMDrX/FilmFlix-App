@@ -1,13 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:filmflix/core/constants/app_strings.dart';
-import 'package:filmflix/core/constants/app_values.dart';
+
 import 'package:filmflix/core/config/routes/app_router.dart';
 import 'package:filmflix/core/config/routes/app_routes.dart';
+import 'package:filmflix/core/constants/app_strings.dart';
+import 'package:filmflix/core/constants/app_values.dart';
 
 class MainPage extends StatefulWidget {
   final Widget child;
-  const MainPage({super.key, required this.child});
+  final bool showBottomNav;
+  const MainPage({
+    super.key,
+    required this.child,
+    this.showBottomNav = true,
+  });
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -29,40 +36,42 @@ class _MainPageState extends State<MainPage> {
         },
         child: widget.child,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            label: AppStrings.movies,
-            icon: Icon(
-              Icons.movie_creation_rounded,
-              size: AppSize.s20,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: AppStrings.shows,
-            icon: Icon(
-              Icons.tv_rounded,
-              size: AppSize.s20,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: AppStrings.search,
-            icon: Icon(
-              Icons.search_rounded,
-              size: AppSize.s20,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: AppStrings.watchlist,
-            icon: Icon(
-              Icons.bookmark_rounded,
-              size: AppSize.s20,
-            ),
-          ),
-        ],
-        currentIndex: _getSelectedIndex(context),
-        onTap: (index) => _onItemTapped(index, context),
-      ),
+      bottomNavigationBar: widget.showBottomNav
+          ? BottomNavigationBar(
+              items: const [
+                BottomNavigationBarItem(
+                  label: AppStrings.movies,
+                  icon: Icon(
+                    Icons.movie_creation_rounded,
+                    size: AppSize.s20,
+                  ),
+                ),
+                BottomNavigationBarItem(
+                  label: AppStrings.shows,
+                  icon: Icon(
+                    Icons.tv_rounded,
+                    size: AppSize.s20,
+                  ),
+                ),
+                BottomNavigationBarItem(
+                  label: AppStrings.search,
+                  icon: Icon(
+                    Icons.search_rounded,
+                    size: AppSize.s20,
+                  ),
+                ),
+                BottomNavigationBarItem(
+                  label: AppStrings.watchlist,
+                  icon: Icon(
+                    Icons.bookmark_rounded,
+                    size: AppSize.s20,
+                  ),
+                ),
+              ],
+              currentIndex: _getSelectedIndex(context),
+              onTap: (index) => _onItemTapped(index, context),
+            )
+          : null,
     );
   }
 
