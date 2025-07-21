@@ -24,7 +24,7 @@ class VerticalListViewCard extends StatelessWidget {
       child: Container(
         height: AppSize.s175,
         decoration: BoxDecoration(
-          color: AppColors.secondaryBackground,
+          color: Theme.of(context).colorScheme.secondaryContainer,
           borderRadius: BorderRadius.circular(AppSize.s8),
         ),
         child: Row(

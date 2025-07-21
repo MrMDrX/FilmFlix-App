@@ -1,15 +1,14 @@
-import 'package:filmflix/core/common/entities/media.dart';
-import 'package:filmflix/core/constants/app_strings.dart';
-import 'package:filmflix/core/utils/helpers.dart';
-import 'package:filmflix/features/watchlist/presentation/bloc/watchlist_bloc/watchlist_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:filmflix/core/utils/helpers.dart';
+import 'package:filmflix/core/constants/app_values.dart';
+import 'package:filmflix/core/common/entities/media.dart';
+import 'package:filmflix/core/constants/app_strings.dart';
+import 'package:filmflix/core/config/themes/app_colors.dart';
+import 'package:filmflix/core/extensions/context_extension.dart';
 import 'package:filmflix/core/common/entities/media_details.dart';
 import 'package:filmflix/core/common/widgets/slider_card_image.dart';
-import 'package:filmflix/core/config/themes/app_colors.dart';
-import 'package:filmflix/core/constants/app_values.dart';
-import 'package:filmflix/core/extensions/context_extension.dart';
+import 'package:filmflix/features/watchlist/presentation/bloc/watchlist_bloc/watchlist_bloc.dart';
 
 class DetailsCard extends StatelessWidget {
   const DetailsCard({
@@ -82,10 +81,7 @@ class DetailsCard extends StatelessWidget {
                     if (mediaDetails.trailerUrl.isNotEmpty) ...[
                       InkWell(
                         onTap: () async {
-                          final url = Uri.parse(mediaDetails.trailerUrl);
-                          if (await canLaunchUrl(url)) {
-                            await launchUrl(url);
-                          }
+                          openURL(mediaDetails.trailerUrl);
                         },
                         child: Container(
                           height: AppSize.s40,

@@ -51,7 +51,7 @@ class EpisodesWidget extends StatelessWidget {
                           context: context,
                           tmdbId: tmdbId,
                           season: episodes[index].season.toString(),
-                          episode: index.toString(),
+                          episode: '${index + 1}',
                         );
                       },
                       child: Container(

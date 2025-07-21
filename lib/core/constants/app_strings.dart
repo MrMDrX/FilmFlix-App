@@ -1,9 +1,13 @@
 class AppStrings {
   static const String appName = 'FilmFlix';
+  static const String appVersion = '1.0.0';
+
   static const String movies = 'Movies';
   static const String shows = 'Shows';
   static const String search = 'Search';
   static const String watchlist = 'Watchlist';
+  static const String settings = 'Settings';
+  static const String about = 'About';
 
   static const String popularMovies = 'Popular movies';
   static const String topRatedMovies = 'Top rated movies';
@@ -43,4 +47,20 @@ class AppStrings {
   static const String errorMessage = 'Something went wrong!';
   static const String tryAgain = 'Try again!';
   static const String noResults = 'No results';
+
+  static const String getStorageName = 'filmflix_storage';
+  static const String boxName = 'items';
+
+  static const String theme = 'Theme';
+  static const String light = 'Light';
+  static const String dark = 'Dark';
+  static const String system = 'System';
+
+  static const String appVerTxt = "app version";
+  static const String appDesc = "Free, Ad-free and open-source app";
+  static const String appPray = "We ask you to pray for us and our parents.";
+  static const String appDev = "Developed by MrMDrX";
+  static const String website = 'https://mrmdrx.github.io';
+  static const String sourceCode = "See source code";
+  static const String repoLink = "https://github.com/mrmdrx/FilmFlix-App";
 }

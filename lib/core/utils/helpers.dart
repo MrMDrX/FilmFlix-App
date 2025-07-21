@@ -12,6 +12,7 @@ import 'package:filmflix/core/config/themes/app_colors.dart';
 import 'package:filmflix/core/constants/api_constants.dart';
 import 'package:filmflix/core/constants/app_strings.dart';
 import 'package:filmflix/core/constants/app_values.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 String getPosterUrl(String? path) {
   if (path != null) {
@@ -259,7 +260,7 @@ Widget getOverviewSection(String overview) {
 void showCustomBottomSheet(BuildContext context, Widget child) {
   showModalBottomSheet(
     context: context,
-    backgroundColor: AppColors.secondaryBackground,
+    //backgroundColor: AppColors.secondaryBackground,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(AppSize.s20),
@@ -297,4 +298,16 @@ void showSnackBar(BuildContext context, String content) {
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
     ..showSnackBar(snackBar);
+}
+
+Future<void> openURL(String url) async {
+  final parsed = Uri.parse(url);
+  try {
+    if (await canLaunchUrl(parsed)) {
+      await launchUrl(
+        parsed,
+        mode: LaunchMode.externalApplication,
+      );
+    }
+  } catch (_) {}
 }

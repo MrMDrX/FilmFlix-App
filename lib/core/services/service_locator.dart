@@ -14,6 +14,7 @@ import 'package:filmflix/features/search/data/source/search_remote_source.dart';
 import 'package:filmflix/features/search/domain/repository/search_repository.dart';
 import 'package:filmflix/features/search/domain/usecases/search_usecase.dart';
 import 'package:filmflix/features/search/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:filmflix/features/settings/presentation/bloc/theme_cubit.dart';
 import 'package:filmflix/features/shows/data/repository/shows_repository_impl.dart';
 import 'package:filmflix/features/shows/data/source/shows_remote_source.dart';
 import 'package:filmflix/features/shows/domain/repository/shows_repository.dart';
@@ -99,5 +100,7 @@ class ServiceLocator {
     sl.registerFactory(() => SearchBloc(sl()));
 
     sl.registerFactory(() => WatchlistBloc(sl(), sl(), sl(), sl()));
+
+    sl.registerFactory(() => ThemeCubit());
   }
 }

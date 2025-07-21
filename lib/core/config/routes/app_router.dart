@@ -1,4 +1,7 @@
 import 'package:filmflix/core/common/pages/webview_player.dart';
+import 'package:filmflix/features/settings/presentation/pages/about_page.dart';
+import 'package:filmflix/features/settings/presentation/pages/settings_page.dart';
+import 'package:filmflix/features/settings/presentation/pages/theme_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:filmflix/core/config/routes/app_routes.dart';
@@ -31,6 +34,10 @@ const String watchlistPath = '/watchlist';
 const String playerMoviePath = 'playerMovie/:tmdbId';
 const String playerShowPath =
     'playerShow/:tmdbId/season/:season/episode/:episode';
+
+const String settingsPath = '/settings';
+const String themePath = 'theme';
+const String aboutPath = 'about';
 
 class AppRouter {
   static GoRouter router = GoRouter(
@@ -153,6 +160,31 @@ class AppRouter {
             pageBuilder: (context, state) => const NoTransitionPage(
               child: WatchlistPage(),
             ),
+          ),
+
+          // Settings
+          GoRoute(
+            name: AppRoutes.settingsRoute,
+            path: settingsPath,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: SettingsPage(),
+            ),
+            routes: [
+              GoRoute(
+                name: AppRoutes.themeRoute,
+                path: themePath,
+                pageBuilder: (context, state) => const CupertinoPage(
+                  child: ThemePage(),
+                ),
+              ),
+              GoRoute(
+                name: AppRoutes.aboutRoute,
+                path: aboutPath,
+                pageBuilder: (context, state) => const CupertinoPage(
+                  child: AboutPage(),
+                ),
+              ),
+            ],
           ),
         ],
       )

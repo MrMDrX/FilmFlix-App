@@ -1,22 +1,22 @@
-import 'package:filmflix/core/config/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:filmflix/core/utils/enums.dart';
+import 'package:filmflix/core/constants/app_values.dart';
+import 'package:filmflix/core/constants/app_strings.dart';
 import 'package:filmflix/core/common/entities/media.dart';
-import 'package:filmflix/core/common/widgets/custom_slider.dart';
+import 'package:filmflix/core/services/service_locator.dart';
+import 'package:filmflix/core/config/routes/app_routes.dart';
 import 'package:filmflix/core/common/widgets/error_page.dart';
-import 'package:filmflix/core/common/widgets/loading_indicator.dart';
+import 'package:filmflix/core/common/widgets/slider_card.dart';
+import 'package:filmflix/core/common/widgets/custom_slider.dart';
 import 'package:filmflix/core/common/widgets/section_header.dart';
+import 'package:filmflix/core/common/widgets/loading_indicator.dart';
 import 'package:filmflix/core/common/widgets/section_listview.dart';
 import 'package:filmflix/core/common/widgets/section_listview_card.dart';
-import 'package:filmflix/core/common/widgets/slider_card.dart';
-import 'package:filmflix/core/constants/app_strings.dart';
-import 'package:filmflix/core/constants/app_values.dart';
-import 'package:filmflix/core/services/service_locator.dart';
-import 'package:filmflix/core/utils/enums.dart';
 import 'package:filmflix/features/movies/presentation/bloc/movies_bloc/movies_bloc.dart';
 import 'package:filmflix/features/movies/presentation/bloc/movies_bloc/movies_event.dart';
 import 'package:filmflix/features/movies/presentation/bloc/movies_bloc/movies_state.dart';
-import 'package:go_router/go_router.dart';
 
 class MoviesPage extends StatelessWidget {
   const MoviesPage({super.key});

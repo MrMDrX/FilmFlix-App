@@ -3,6 +3,7 @@ class AppRoutes {
   static const String popularMoviesRoute = 'popularMovies';
   static const String topRatedMoviesRoute = 'topRatedMovies';
   static const String movieDetailsRoute = 'movieDetails';
+  static const String settingsRoute = 'settings';
 
   static const String tvShowsRoute = 'tvShows';
   static const String popularTvShowsRoute = 'popularTvShowsRoute';
@@ -14,4 +15,8 @@ class AppRoutes {
 
   static const String playerMovieRoute = 'playerMovie';
   static const String playerShowRoute = 'playerShow';
+
+  static const String themeRoute = 'theme';
+
+  static const String aboutRoute = 'about';
 }

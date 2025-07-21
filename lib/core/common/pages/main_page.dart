@@ -1,11 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:filmflix/core/config/routes/app_router.dart';
 import 'package:filmflix/core/config/routes/app_routes.dart';
 import 'package:filmflix/core/constants/app_strings.dart';
 import 'package:filmflix/core/constants/app_values.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class MainPage extends StatefulWidget {
   final Widget child;
@@ -38,32 +37,43 @@ class _MainPageState extends State<MainPage> {
       ),
       bottomNavigationBar: widget.showBottomNav
           ? BottomNavigationBar(
+              backgroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+              selectedItemColor: Theme.of(context).colorScheme.primary,
+              unselectedItemColor: Theme.of(context).colorScheme.secondary,
               items: const [
                 BottomNavigationBarItem(
                   label: AppStrings.movies,
                   icon: Icon(
-                    Icons.movie_creation_rounded,
+                    HugeIcons.strokeRoundedFilm02,
                     size: AppSize.s20,
                   ),
                 ),
                 BottomNavigationBarItem(
                   label: AppStrings.shows,
                   icon: Icon(
-                    Icons.tv_rounded,
+                    HugeIcons.strokeRoundedTv01,
                     size: AppSize.s20,
                   ),
                 ),
                 BottomNavigationBarItem(
                   label: AppStrings.search,
                   icon: Icon(
-                    Icons.search_rounded,
+                    HugeIcons.strokeRoundedSearch01,
                     size: AppSize.s20,
                   ),
                 ),
                 BottomNavigationBarItem(
                   label: AppStrings.watchlist,
                   icon: Icon(
-                    Icons.bookmark_rounded,
+                    HugeIcons.strokeRoundedBookmark02,
+                    size: AppSize.s20,
+                  ),
+                ),
+                BottomNavigationBarItem(
+                  label: AppStrings.settings,
+                  icon: Icon(
+                    HugeIcons.strokeRoundedSettings03,
                     size: AppSize.s20,
                   ),
                 ),
@@ -89,6 +99,9 @@ class _MainPageState extends State<MainPage> {
     if (location.startsWith(watchlistPath)) {
       return 3;
     }
+    if (location.startsWith(settingsPath)) {
+      return 4;
+    }
     return 0;
   }
 
@@ -105,6 +118,9 @@ class _MainPageState extends State<MainPage> {
         break;
       case 3:
         context.goNamed(AppRoutes.watchlistRoute);
+        break;
+      case 4:
+        context.goNamed(AppRoutes.settingsRoute);
         break;
     }
   }
